@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXIOM | Automação e IA para Empresas</title>
+    <meta name="description" content="A AXIOM arquiteta estruturas digitais e inteligência artificial para eliminar gargalos operacionais em indústrias, imobiliárias e contabilidades.">
+    <meta property="og:title" content="AXIOM | Automação e IA para Empresas">
+    <meta property="og:description" content="Eliminamos o gargalo operacional do seu negócio com automação e IA.">
+    <meta property="og:url" content="https://axiomestrutura.com.br">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0d12;
+            --bg2: #0f1318;
+            --cyan: #00d4ff;
+            --white: #f0f4f8;
+            --gray: #8899aa;
+            --card-bg: #141920;
+            --border: rgba(0, 212, 255, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 13, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        .logo span { color: var(--cyan); }
+
+        .btn-contato {
+            background: var(--cyan);
+            color: var(--bg);
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn-contato:hover { opacity: 0.85; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px; left: 50%;
+            transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.3);
+            color: var(--cyan);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 32px;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            max-width: 800px;
+            margin: 0 auto 24px;
+        }
+
+        .hero h1 span { color: var(--cyan); }
+
+        .hero p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 560px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--cyan);
+            color: var(--bg);
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .btn-secondary:hover { border-color: var(--cyan); transform: translateY(-2px); }
+
+        /* SEÇÃO GENÉRICA */
+        .section-label {
+            color: var(--cyan);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            color: var(--gray);
+            max-width: 520px;
+            margin: 0 auto 56px;
+            line-height: 1.7;
+        }
+
+        /* NICHOS */
+        .nichos {
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .nichos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .nicho-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 36px 28px;
+            text-align: left;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .nicho-card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-4px); }
+        .nicho-icon { font-size: 2rem; margin-bottom: 20px; }
+
+        .nicho-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .nicho-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+
+        /* COMO FUNCIONA */
+        .como-funciona {
+            padding: 80px 60px;
+            background: var(--bg2);
+            text-align: center;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .step { padding: 32px 24px; }
+
+        .step-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(0,212,255,0.15);
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .step h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--cyan);
+        }
+
+        .step p { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
+
+        /* SERVICOS */
+        .features {
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 36px 28px;
+            text-align: left;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-4px); }
+        .icon { font-size: 2rem; margin-bottom: 20px; }
+
+        .card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card p { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+
+        /* CASE */
+        .case {
+            padding: 80px 60px;
+            background: var(--bg2);
+            text-align: center;
+        }
+
+        .case-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 56px 48px;
+            text-align: left;
+        }
+
+        .case-tag {
+            display: inline-block;
+            background: rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.3);
+            color: var(--cyan);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+
+        .case-box h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .case-box p { color: var(--gray); line-height: 1.7; margin-bottom: 32px; }
+
+        .case-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,212,255,0.05);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .metric-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--cyan);
+            margin-bottom: 6px;
+        }
+
+        .metric-label { color: var(--gray); font-size: 0.8rem; }
+
+        /* DEPOIMENTO */
+        .depoimento {
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .depoimento-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px;
+            position: relative;
+        }
+
+        .aspas {
+            font-family: 'Syne', sans-serif;
+            font-size: 5rem;
+            color: var(--cyan);
+            opacity: 0.2;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .depoimento-texto {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--white);
+            font-style: italic;
+            margin-bottom: 32px;
+        }
+
+        .depoimento-autor {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .autor-info span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .autor-info strong {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.95rem;
+            color: var(--white);
+        }
+
+        /* QUEM SOU */
+        .quem-sou {
+            padding: 80px 60px;
+            background: var(--bg2);
+        }
+
+        .quem-sou-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .quem-sou-foto {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .quem-sou-texto .section-label { margin-bottom: 12px; }
+
+        .quem-sou-texto h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.6rem, 2.5vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .quem-sou-texto p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 24px 0;
+            cursor: pointer;
+        }
+
+        .faq-pergunta {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .faq-pergunta::after {
+            content: '+';
+            color: var(--cyan);
+            font-size: 1.4rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-pergunta::after { transform: rotate(45deg); }
+
+        .faq-resposta {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s;
+        }
+
+        .faq-item.open .faq-resposta {
+            max-height: 200px;
+            padding-top: 16px;
+        }
+
+        /* CTA FINAL */
+        .cta-final {
+            padding: 100px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            bottom: -200px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-final h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-weight: 800;
+            max-width: 600px;
+            margin: 0 auto 16px;
+        }
+
+        .cta-final p { color: var(--gray); margin-bottom: 40px; }
+
+        /* FOOTER */
+        footer {
+            padding: 24px 60px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 16px 24px; }
+            .hero { padding: 100px 24px 60px; }
+            .nichos, .como-funciona, .features, .case, .depoimento, .faq, .cta-final { padding: 60px 24px; }
+            .case-metrics { grid-template-columns: 1fr; }
+            .case-box { padding: 32px 24px; }
+            .quem-sou { padding: 60px 24px; }
+            .quem-sou-inner { grid-template-columns: 1fr; gap: 32px; }
+            .quem-sou-foto { max-width: 260px; margin: 0 auto; display: block; }
+            .depoimento-box { padding: 32px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">AXIOM<span>.</span></div>
+        <a href="https://wa.me/5511942927146" class="btn-contato">Falar com Especialista</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">Automação · IA · Resultados</div>
+            <h1>Sua empresa gera dados.<br><span>Nós geramos lucro e tempo.</span></h1>
+            <p>Arquitetamos estruturas digitais e inteligência artificial para eliminar o gargalo operacional do seu negócio.</p>
+            <div class="cta-group">
+                <a href="#solucoes" class="btn-primary">Ver Soluções</a>
+                <a href="https://wa.me/5511942927146" class="btn-secondary">Consultoria Gratuita</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="nichos">
+        <div class="section-label">Quem atendemos</div>
+        <h2 class="section-title">Soluções por segmento</h2>
+        <p class="section-sub">Cada nicho tem seus gargalos. A AXIOM entende o seu negócio antes de propor qualquer solução.</p>
+        <div class="nichos-grid">
+            <div class="nicho-card">
+                <div class="nicho-icon">🏭</div>
+                <h3>Indústria</h3>
+                <p>Automação de ordens de produção, controle de estoque em tempo real e rastreabilidade de componentes.</p>
+            </div>
+            <div class="nicho-card">
+                <div class="nicho-icon">🏠</div>
+                <h3>Imobiliárias</h3>
+                <p>Agente IA que atende leads em minutos, qualifica automaticamente e alimenta seu CRM sem intervenção humana.</p>
+            </div>
+            <div class="nicho-card">
+                <div class="nicho-icon">📋</div>
+                <h3>Contabilidades</h3>
+                <p>Automação de lembretes fiscais, recebimento de documentos e comunicação com clientes no prazo certo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="como-funciona">
+        <div class="section-label">Processo</div>
+        <h2 class="section-title">Como funciona</h2>
+        <p class="section-sub">Do diagnóstico à entrega em poucos dias.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <h3>Diagnóstico</h3>
+                <p>Analisamos seu processo atual e identificamos os gargalos que estão custando dinheiro.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <h3>Arquitetura</h3>
+                <p>Desenhamos o fluxo de automação personalizado para o seu negócio.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <h3>Implantação</h3>
+                <p>Construímos e configuramos toda a estrutura digital com acompanhamento próximo.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">04</div>
+                <h3>Resultado</h3>
+                <p>Seu negócio opera com mais eficiência, menos custo e zero gargalo operacional.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucoes" class="features">
+        <div class="section-label">O que fazemos</div>
+        <h2 class="section-title">Nossas soluções</h2>
+        <p class="section-sub">Tecnologia aplicada ao problema real do seu negócio.</p>
+        <div class="features-grid">
+            <div class="card">
+                <div class="icon">⚙️</div>
+                <h3>Automação de Fluxos</h3>
+                <p>Integramos processos complexos via n8n para eliminar erros humanos e reduzir custos fixos.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🤖</div>
+                <h3>IA de Atendimento</h3>
+                <p>Agentes inteligentes que atendem, qualificam e acompanham leads 24/7 sem depender de humano.</p>
+            </div>
+            <div class="card">
+                <div class="icon">📊</div>
+                <h3>Inteligência de Dados</h3>
+                <p>Dashboards estratégicos para decisões baseadas em fatos, não em suposições.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="case">
+        <div class="section-label">Case real</div>
+        <h2 class="section-title">Resultado que fala por si</h2>
+        <p class="section-sub" style="margin-bottom: 40px;">Um sistema implantado, funcionando em produção.</p>
+        <div class="case-box">
+            <div class="case-tag">Case · Indústria</div>
+            <h3>Sistema de Ordens de Produção</h3>
+            <p>A empresa operava com pedidos manuais, controle de estoque em planilha e sem rastreabilidade de componentes. A AXIOM implantou um sistema completo com formulário digital, automação via n8n, controle de estoque em tempo real e interface de gestão personalizada.</p>
+            <div class="case-metrics">
+                <div class="metric">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Automação das OS</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">0</div>
+                    <div class="metric-label">Erros manuais</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">24/7</div>
+                    <div class="metric-label">Sistema rodando</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="depoimento">
+        <div class="section-label">O que dizem</div>
+        <h2 class="section-title">Quem já viveu o resultado</h2>
+        <div class="depoimento-box">
+            <div class="aspas">"</div>
+            <p class="depoimento-texto">O sistema da AXIOM realmente funciona. No começo eu não acreditava, porém eles me mostraram na tela do meu celular onde eu perdia dinheiro.</p>
+            <div class="depoimento-autor">
+                <div class="autor-info">
+                    <strong>Cliente AXIOM</strong>
+                    <span>Setor Industrial · Suzano, SP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quem-sou">
+        <div class="quem-sou-inner">
+            <img src="perfil_atualizado.png" alt="Weberton Silva" class="quem-sou-foto">
+            <div class="quem-sou-texto">
+                <div class="section-label">Quem está por trás</div>
+                <h2>Weberton Silva</h2>
+                <p>Fundador da AXIOM e especialista em automação e inteligência artificial aplicada a negócios. Com experiência prática nos setores industrial, imobiliário e contábil, desenvolve soluções digitais que eliminam gargalos operacionais e geram resultado real.</p>
+                <p>A AXIOM nasceu da convicção de que tecnologia de ponta não é exclusividade de grandes empresas — pequenos e médios negócios merecem a mesma eficiência.</p>
+                <a href="https://wa.me/5511942927146" class="btn-primary" style="display:inline-block; margin-top: 24px;">Falar com Weberton</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="section-label">Dúvidas</div>
+        <h2 class="section-title">Perguntas frequentes</h2>
+        <p class="section-sub">Tudo que você precisa saber antes de começar.</p>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-pergunta">Quanto tempo leva a implantação?</div>
+                <div class="faq-resposta">A maioria dos projetos é entregue em 3 a 7 dias úteis após o diagnóstico. Projetos mais complexos podem levar até 15 dias.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pergunta">Preciso ter conhecimento técnico?</div>
+                <div class="faq-resposta">Não. A AXIOM cuida de toda a parte técnica. Você só precisa entender o seu negócio — nós traduzimos isso em tecnologia.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pergunta">Como funciona o suporte após a entrega?</div>
+                <div class="faq-resposta">Todos os clientes têm suporte contínuo incluso na mensalidade. Qualquer ajuste ou dúvida é resolvido diretamente pelo WhatsApp.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pergunta">Quais ferramentas vocês utilizam?</div>
+                <div class="faq-resposta">Trabalhamos com n8n, Budibase, APIs de WhatsApp e inteligência artificial. Todas as ferramentas são escolhidas de acordo com a necessidade de cada cliente.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final">
+        <h2>Pronto para eliminar seu gargalo operacional?</h2>
+        <p>Fale com um especialista e receba uma análise gratuita do seu processo.</p>
+        <a href="https://wa.me/5511942927146" class="btn-primary">Quero uma análise gratuita</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 AXIOM - Estrutura Digital | axiomestrutura.com.br</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
+</body>
+</html>
